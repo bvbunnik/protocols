@@ -23,6 +23,10 @@ return [
         'login' => 'Login',
         'macros' => 'Macros',
         'register' => 'Register',
+        'human_animals' => 'Human / Domestic Animals/ Free-Ranging Animals',
+        'vectors' => 'Vectors',
+        'transport' => 'Transport / Storage',
+        'food' => 'Food',
 
         'user' => [
             'administration' => 'Administration',

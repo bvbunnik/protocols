@@ -5,6 +5,10 @@
  */
 Route::get('/', 'FrontendController@index')->name('frontend.index');
 Route::get('macros', 'FrontendController@macros')->name('frontend.macros');
+Route::get('vectors', 'FrontendController@vectors')->name('frontend.vectors');
+Route::get('transport-storage', 'FrontendController@transport')->name('frontend.transport');
+Route::get('food', 'FrontendController@food')->name('frontend.food');
+Route::get('protocol', 'FrontendController@getData')->name('frontend.protocols.get');
 
 /**
  * These frontend controllers require the user to be logged in

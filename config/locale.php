@@ -8,7 +8,7 @@ return [
      *
      * @var bool
      */
-    'status' => true,
+    'status' => false,
 
     /**
      * Available languages
@@ -34,6 +34,7 @@ return [
         'es'    => ['es', 'es_ES'],
         'fr'    => ['fr', 'fr_FR'],
         'it'    => ['it', 'it_IT'],
+        'nl'    => ['nl', 'nl_NL'],
         'pt-BR' => ['pt_BR', 'pt_BR'],
         'sv'    => ['sv', 'sv_SE'],
     ],
