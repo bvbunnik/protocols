@@ -8,7 +8,7 @@ Website containing protocols that can be used during outbreak detection.
   1. `composer install`
   2. `npm install`
   3. Create .env file (.env.example included)
-  4. `php install key:generate`
+  4. `php artisan key:generate`
   5. `php artisan migrate`
   6. Set administrator info in `database/seeds/Access/UserTableSeeder.php`
   7. `php artisan db:seed`
