@@ -13,7 +13,7 @@ Website containing protocols that can be used during outbreak detection.
   6. Set administrator info in `database/seeds/Access/UserTableSeeder.php`
   7. `php artisan db:seed`
   8. run `gulp`
-  9. Import the csv-files under `protocols` in the mysql-database (tables and files have the same name) using (for example): ``mysqlimport -hhostaddress-uusername -p --columns=`head -n 1 ./protocols/tablename.csv` --ignore-lines=1 protocols ./protocols/tablename.csv -L --fields-terminated-by=',' --field-optionally-enclosed-by='"'``
+  9. Import the csv-files under `protocols` in the mysql-database (tables and files have the same name) using (for example): ``mysqlimport -hhostaddress -uusername -p --columns=`head -n 1 ./protocols/tablename.csv` --ignore-lines=1 protocols ./protocols/tablename.csv -L --fields-terminated-by=',' --field-optionally-enclosed-by='"'``
 
 ###License
 MIT: [http://anthony.mit-license.org](http://anthony.mit-license.org)
