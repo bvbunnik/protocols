@@ -1,6 +1,25 @@
 @extends('frontend.layouts.master')
 
+@section('after-styles-end')
+    <style>
+        .form-inline .form-group input {
+            width:500px;
+        }
+    </style>
+@endsection
+
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="search">Filter the results in the table:</label>
+                    <input type="text" width="100%" class="form-control" id="search">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="row">
 
         <div class="col-md-12">
@@ -44,7 +63,7 @@
     <script>
         $(document).ready(function() {
             var table = $('#protocols-table').DataTable({
-                "bPaginate": false,
+                "bPaginate": true,
                 "dom": 'lrtip',
 
                 processing: true,

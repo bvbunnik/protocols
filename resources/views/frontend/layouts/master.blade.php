@@ -15,6 +15,8 @@
 
         <!-- Styles -->
         @yield('before-styles-end')
+        {!! Html::style('https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') !!}
+
         {!! Html::style(elixir('css/frontend.css')) !!}
         @yield('after-styles-end')
 
