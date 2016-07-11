@@ -41,6 +41,11 @@ return [
             'dashboard' => 'Dashboard',
             'logs' => 'Logs',
         ],
+        'protocol-viewer' => [
+            'title' => 'Protocol Management',
+            'dashboard' => 'Dashboard',
+            'protocols' => 'Protocols',
+        ],
 
         'sidebar' => [
             'dashboard' => 'Dashboard',

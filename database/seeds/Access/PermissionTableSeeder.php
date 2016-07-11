@@ -65,6 +65,24 @@ class PermissionTableSeeder extends Seeder
         $manageRoles->updated_at   = Carbon::now();
         $manageRoles->save();
 
+        $permission_model          = config('access.permission');
+        $manageRoles               = new $permission_model;
+        $manageRoles->name         = 'manage-logs';
+        $manageRoles->display_name = 'Manage Logs';
+        $manageRoles->sort         = 4;
+        $manageRoles->created_at   = Carbon::now();
+        $manageRoles->updated_at   = Carbon::now();
+        $manageRoles->save();
+
+        $permission_model          = config('access.permission');
+        $manageRoles               = new $permission_model;
+        $manageRoles->name         = 'manage-protocols';
+        $manageRoles->display_name = 'Manage Protocols';
+        $manageRoles->sort         = 4;
+        $manageRoles->created_at   = Carbon::now();
+        $manageRoles->updated_at   = Carbon::now();
+        $manageRoles->save();
+
         if (DB::connection()->getDriverName() == 'mysql') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }

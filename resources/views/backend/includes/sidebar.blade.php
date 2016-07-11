@@ -33,13 +33,28 @@
             <li class="{{ Active::pattern('admin/dashboard') }}">
                 {{ link_to_route('admin.dashboard', trans('menus.backend.sidebar.dashboard')) }}
             </li>
-
+            @permission('manage-protocols')
+            <li class="{{ Active::pattern('admin/protocol-viewer*') }} treeview">
+                <a href="#">
+                    <span>{{ trans('menus.backend.protocol-viewer.title') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu {{ Active::pattern('admin/protocol-viewer*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/log-viewer*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/protocol-viewer') }}">
+                        {{ link_to('admin/protocol-viewer', trans('menus.backend.protocol-viewer.dashboard')) }}
+                    </li>
+                    <li class="{{ Active::pattern('admin/protocol-viewer/logs') }}">
+                        {{ link_to('admin/protocol-viewer/logs', trans('menus.backend.protocol-viewer.protocols')) }}
+                    </li>
+                </ul>
+            </li>
+            @endauth
             @permission('manage-users')
                 <li class="{{ Active::pattern('admin/access/*') }}">
                     {{ link_to('admin/access/users', trans('menus.backend.access.title')) }}
                 </li>
             @endauth
-
+            @permission('manage-logs')
             <li class="{{ Active::pattern('admin/log-viewer*') }} treeview">
                 <a href="#">
                     <span>{{ trans('menus.backend.log-viewer.main') }}</span>
@@ -54,6 +69,7 @@
                     </li>
                 </ul>
             </li>
+            @endauth
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
