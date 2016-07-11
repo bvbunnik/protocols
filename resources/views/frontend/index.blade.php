@@ -57,15 +57,26 @@
 @endsection
 
 @section('after-scripts-end')
-    {{ Html::script("js/backend/plugin/datatables/jquery.dataTables.min.js") }}
-    {{ Html::script("js/backend/plugin/datatables/dataTables.bootstrap.min.js") }}
+    {{ Html::script("https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js") }}
+    {{ Html::script("https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js") }}
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
 
     <script>
         $(document).ready(function() {
             var table = $('#protocols-table').DataTable({
-                "bPaginate": true,
-                "dom": 'lrtip',
-
+                "paging": true,
+                "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+                "dom": 'Blrtip',
+                buttons: [
+                    {extend: 'copy', text: 'Copy to clipboard'},
+                    {extend: 'csv', text: 'Save as CSV'},
+                    {extend: 'pdfHtml5', text: 'Save as PDF'}
+                ],
                 processing: true,
                 serverSide: true,
                 ajax: {

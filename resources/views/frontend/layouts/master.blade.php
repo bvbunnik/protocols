@@ -15,9 +15,9 @@
 
         <!-- Styles -->
         @yield('before-styles-end')
-        {!! Html::style('https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') !!}
-
         {!! Html::style(elixir('css/frontend.css')) !!}
+        {!! Html::style('https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css') !!}
+        {!! Html::style('https://cdn.datatables.net/buttons/1.2.1/css/buttons.bootstrap.min.css') !!}
         @yield('after-styles-end')
 
         <!-- Fonts -->
@@ -34,7 +34,7 @@
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{asset('js/vendor/jquery/jquery-2.1.4.min.js')}}"><\/script>')</script>
+        <!-- <script>window.jQuery || document.write('<script src="{{asset('js/vendor/jquery/jquery-2.1.4.min.js')}}"><\/script>')</script> -->
         {!! Html::script('js/vendor/bootstrap/bootstrap.min.js') !!}
 
         @yield('before-scripts-end')
