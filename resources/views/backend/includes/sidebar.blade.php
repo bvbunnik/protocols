@@ -44,7 +44,7 @@
                         {{ link_to('admin/protocol-viewer', trans('menus.backend.protocol-viewer.dashboard')) }}
                     </li>
                     <li class="{{ Active::pattern('admin/protocol-viewer/logs') }}">
-                        {{ link_to('admin/protocol-viewer/logs', trans('menus.backend.protocol-viewer.protocols')) }}
+                        {{ link_to('admin/protocol-viewer/protocols', trans('menus.backend.protocol-viewer.protocols')) }}
                     </li>
                 </ul>
             </li>

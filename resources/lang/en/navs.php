@@ -23,9 +23,9 @@ return [
         'login' => 'Login',
         'macros' => 'Macros',
         'register' => 'Register',
-        'human_animals' => 'Human / Domestic Animals/ Free-Ranging Animals',
+        'human_animals' => 'Human & Animals',
         'vectors' => 'Vectors',
-        'transport' => 'Transport / Storage',
+        'transport' => 'Transport & Storage',
         'food' => 'Food',
 
         'user' => [
