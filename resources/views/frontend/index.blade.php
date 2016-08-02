@@ -4,32 +4,22 @@
     {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}
 @endsection
 
+
 @section('content')
 
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-database"></i> {{ trans('navs.frontend.human_animals') }}</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                    </div>
+                    <h3 class="box-title"><i class="fa fa-database"></i> {{ $protocol1[0]->name }}</h3>
                 </div>
                 <div class="box-body">
-
                     <table class="table table-bordered" id="protocols-table">
                         <thead>
                         <tr>
-                            <th title="Field #1">Domestic / Free-ranging / Not Applicable (NA)</th>
-                            <th title="Field #2">Host species</th>
-                            <th title="Field #3">In-vivo (IV) / Post-mortem (PM)</th>
-                            <th title="Field #4">Disease or Syndrome</th>
-                            <th title="Field #5">Pathogen type</th>
-                            <th title="Field #6">Pathogen species</th>
-                            <th title="Field #7">Protocol(s)</th>
-                            <th title="Field #8">Source</th>
-                            <th title="Field #9">Comments</th>
-                            <th title="Field #10">Notifiable</th>
+                            @foreach($table_columns->columns as $column)
+                            <th> {{$column}}</th>
+                            @endforeach
                         </tr>
                         </thead>
                     </table>
@@ -53,29 +43,19 @@
 
     <script>
         $(document).ready(function() {
+
             var table = $('#protocols-table').DataTable({
                 "paging": true,
                 "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
                 "search": true,
                 processing: true,
                 serverSide: true,
+
                 ajax: {
                     url: '{{ route("frontend.protocols.get") }}',
                     type: 'get',
-                    data: {protocol: "combined"}
+                    data: {protocol: "{{$protocol1[0]->table_name}}"}
                 },
-                columns: [
-                    {data: 'type', name: 'type'},
-                    {data: 'host_species', name: 'host_species'},
-                    {data: 'diagnosis', name: 'diagnosis'},
-                    {data: 'disease', name: 'disease'},
-                    {data: 'pathogen_type', name: 'pathogen_type'},
-                    {data: 'pathogen_species', name: 'pathogen_species'},
-                    {data: 'protocols', name: 'protocols'},
-                    {data: 'source', name: 'source'},
-                    {data: 'comments', name: 'comments'},
-                    {data: 'notifiable', name: 'notifiable'}
-                ],
                 order: [[0, "asc"]],
                 searchDelay: 500
             });
@@ -90,5 +70,8 @@
                     table.table().container()
             );
         } );
+    </script>
+    <script>
+        console.log(protocol_name);
     </script>
 @stop

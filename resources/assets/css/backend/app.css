@@ -8146,6 +8146,7 @@ a:focus {
     .main-header .logo .logo-mini {
       display: none; }
   .main-header .navbar-brand {
+    padding: 3px 15px;
     color: #fff; }
 
 .content-header {

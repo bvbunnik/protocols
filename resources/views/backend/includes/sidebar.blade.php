@@ -39,7 +39,7 @@
                     <span>{{ trans('menus.backend.protocol-viewer.title') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu {{ Active::pattern('admin/protocol-viewer*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/log-viewer*', 'display: block;') }}">
+                <ul class="treeview-menu {{ Active::pattern('admin/protocol-viewer*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/protocol-viewer*', 'display: block;') }}">
                     <li class="{{ Active::pattern('admin/protocol-viewer') }}">
                         {{ link_to('admin/protocol-viewer', trans('menus.backend.protocol-viewer.dashboard')) }}
                     </li>

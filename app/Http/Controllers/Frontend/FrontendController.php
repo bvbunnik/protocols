@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Vector;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
-use App\Models\Combined;
-use App\Models\Transport;
-use App\Models\Food;
+use App\Models\Protocols;
+use DB;
+
 /**
  * Class FrontendController
  * @package App\Http\Controllers
@@ -20,54 +19,26 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $protocol1 = Protocols::where('id', '1')->get();
+        $table_columns = json_decode($protocol1[0]['table_columns']);
+        return view('frontend.index', compact('protocol1', 'table_columns'));
     }
 
-    public function vectors()
+    public function getProtocol($protocol)
     {
-        return view('frontend.vectors');
-    }
+        $protocol1 = Protocols::where('table_name', $protocol)->get();
+        $table_columns = json_decode($protocol1[0]['table_columns']);
 
-    public function transport()
-    {
-        return view('frontend.transport');
-    }
-
-    public function food()
-    {
-        return view('frontend.food');
+        return view('frontend.index', compact('protocol1', 'table_columns'));
     }
 
     public function getData(Request $request)
     {
-        //dd($protocol);
+        $protocol = $request->get('protocol');
         $datatables = app('datatables');
-        switch ($request->get('protocol')) {
-            case "combined":
-                $protocols = Combined::select(['type', 'host_species', 'diagnosis', 'disease', 'pathogen_type', 'pathogen_species', 'protocols', 'source', 'comments', 'notifiable']);
-                return $datatables->eloquent($protocols)->make(true);
-                break;
-            case "vector":
-                $protocols = Vector::select(['vector', 'vector_scientific_name', 'species', 'target_pathogen','pathogen_scientific_name', 'disease','protocols', 'source']);
-                return $datatables->eloquent($protocols)->make(true);
-                break;
-            case "transport":
-                $protocols = Transport::select(['host', 'type', 'title', 'protocols', 'source']);
-                return $datatables->eloquent($protocols)->make(true);
-                break;
-            case "food":
-                $protocols = Food::select(['host', 'food_item', 'live_dead', 'matrix','target_pathogen','scientific_name', 'protocols', 'source', 'comments']);
-                return $datatables->eloquent($protocols)->make(true);
-                break;
-        }
-    }
-
-
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function macros()
-    {
-        return view('frontend.macros');
+        $columns = DB::getSchemaBuilder()->getColumnListing($protocol);
+        $selected_cols = array_slice($columns, 1,count($columns)-3);
+        $items = DB::table($protocol)->select($selected_cols);
+        return $datatables->queryBuilder($items)->make(false);
     }
 }
