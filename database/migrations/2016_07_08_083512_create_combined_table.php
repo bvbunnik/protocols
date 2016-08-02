@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCombinedTable extends Migration
+class CreateCombinedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateCombinedTable extends Migration
      */
     public function up()
     {
-        Schema::create('combined', function (Blueprint $table) {
+        Schema::create('combineds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
             $table->string('host_species');
@@ -35,6 +35,6 @@ class CreateCombinedTable extends Migration
      */
     public function down()
     {
-        Schema::drop('combined');
+        Schema::drop('combineds');
     }
 }
