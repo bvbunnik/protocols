@@ -4,7 +4,7 @@ Website containing protocols that can be used during outbreak detection.
 
 ###Installation
 1. Clone the repository using `git clone https://github.com/bvbunnik/protocols.git`. This will clone it into the directory `protocols`.
-2. Run the following setup commands:
+2. Run the following setup commands in the `protocols` directory:
   1. `composer install`
   2. `npm install`
   3. Create .env file (.env.example included)
