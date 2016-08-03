@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bvanbun
- * Date: 13/07/2016
- * Time: 12:02
- */
+
 
 namespace app\Http\Controllers\Backend;
 
@@ -31,18 +26,6 @@ class ProtocolsController extends Controller
         return view('backend.protocols.index', compact('protocols'));
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $protocol = Protocols::find($id);
-        //$columns = DB::getSchemaBuilder()->getColumnListing($protocol->table_name);
-        $items = DB::table($protocol->table_name)->get();
-        dd($items);
-        return view('backend.protocols.edit', compact('protocol', 'items'));
-    }
 
     public function create()
     {
@@ -56,15 +39,15 @@ class ProtocolsController extends Controller
             'csv-import' => 'required|mimes:csv,txt',
             'header' => 'required|string'
         ]);
-        $filename = $request->file('csv-import')->getClientOriginalName();
+
         $path = $request->file('csv-import')->getRealPath();
-        //dd($path);
-        $data = Excel::load($path, function($reader) {
-        })->get();
-        //dd($data->toArray());
+
+        $data = Excel::load($path, function($reader) {})->get();
+
+        //Check if header given and header in file match up
+
         $headers = $data[0]->keys()->all();
-        $header_request = $request->header;
-        $header_request = explode(",", $header_request);
+        $header_request = explode(",", $request->header);
         $correct_headers = true;
         foreach ($header_request as $header){
             if (!in_array(trim($header), $headers)) {
@@ -76,8 +59,9 @@ class ProtocolsController extends Controller
                 ->withErrors("Mismatch between headers given and headers found in file. Please try again")
                 ->withInput();
         }
+
+        //Create the table to hold the data
         $table_name = str_slug($request->name, "_");
-        $name = $request->name;
         Schema::create($table_name, function(Blueprint $table) use($data)
         {
             $table->increments('id');
@@ -87,14 +71,29 @@ class ProtocolsController extends Controller
             }
             $table->timestamps();
         });
+        //Insert data
         DB::table($table_name)->insert($data->toArray());
-        return view('backend.protocols.preview', compact('data', 'name'));
+
+        //Create administrative record
+        $table_columns = array('columns' => $headers);
+        $name = $request->name;
+        Protocols::create(['name'=>$name, 'table_name' => $table_name, 'table_columns' => json_encode($table_columns)]);
+
+        //All went well, redirect to index with success message
+        return redirect()->route('admin.protocols.index')->withFlashSuccess('Protocol created successfully!');
+
     }
 
-    public function store(Request $request)
+    public function destroy($id)
     {
+        //Look up the protocol
+        $protocol = Protocols::findOrFail($id);
+        //Delete the table
+        Schema::dropIfExists($protocol->table_name);
+        //Drop the row in the administrative table
+        $protocol->delete();
 
+        //Redirect to index
+        return redirect()->route('admin.protocols.index')->withFlashSuccess('Protocol deleted successfully!');
     }
-
-
 }

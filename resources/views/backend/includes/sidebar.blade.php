@@ -34,17 +34,17 @@
                 {{ link_to_route('admin.dashboard', trans('menus.backend.sidebar.dashboard')) }}
             </li>
             @permission('manage-protocols')
-            <li class="{{ Active::pattern('admin/protocol-viewer*') }} treeview">
+            <li class="{{ Active::pattern('admin/protocol*') }} treeview">
                 <a href="#">
                     <span>{{ trans('menus.backend.protocol-viewer.title') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu {{ Active::pattern('admin/protocol-viewer*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/protocol-viewer*', 'display: block;') }}">
-                    <li class="{{ Active::pattern('admin/protocol-viewer') }}">
-                        {{ link_to('admin/protocol-viewer', trans('menus.backend.protocol-viewer.dashboard')) }}
+                <ul class="treeview-menu {{ Active::pattern('admin/protocol*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/protocol*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/protocols') }}">
+                        {{ link_to('admin/protocols', trans('menus.backend.protocol-viewer.dashboard')) }}
                     </li>
-                    <li class="{{ Active::pattern('admin/protocol-viewer/logs') }}">
-                        {{ link_to('admin/protocol-viewer/protocols', trans('menus.backend.protocol-viewer.protocols')) }}
+                    <li class="{{ Active::pattern('admin/protocols/create') }}">
+                        {{ link_to('admin/protocols/create', "Add protocol") }}
                     </li>
                 </ul>
             </li>

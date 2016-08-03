@@ -78,7 +78,7 @@ class PermissionTableSeeder extends Seeder
         $manageRoles               = new $permission_model;
         $manageRoles->name         = 'manage-protocols';
         $manageRoles->display_name = 'Manage Protocols';
-        $manageRoles->sort         = 4;
+        $manageRoles->sort         = 5;
         $manageRoles->created_at   = Carbon::now();
         $manageRoles->updated_at   = Carbon::now();
         $manageRoles->save();

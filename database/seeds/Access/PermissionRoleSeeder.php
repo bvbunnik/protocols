@@ -25,12 +25,10 @@ class PermissionRoleSeeder extends Seeder
 		}
 
 		/**
-		 * Assign view backend and manage user permissions to executive role as example
+		 * Assign view backend and manage protocols to power user role
 		 */
-		Role::find(2)->permissions()->sync([1, 2]);
-		/**
-		 * 
-		 */
+		Role::find(2)->permissions()->sync([1, 5]);
+
 
 		if (DB::connection()->getDriverName() == 'mysql') {
 			DB::statement('SET FOREIGN_KEY_CHECKS=1;');
