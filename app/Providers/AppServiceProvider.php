@@ -30,9 +30,6 @@ class AppServiceProvider extends ServiceProvider
          * setLocale to use Carbon source locales. Enables diffForHumans() localized
          */
         Carbon::setLocale(config('app.locale'));
-        $protocols = Protocols::all();
-
-        view()->share('protocols', $protocols);
     }
 
     /**
