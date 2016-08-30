@@ -54,7 +54,7 @@
     </div><!-- ./wrapper -->
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script type="text/javascript" src="/js/vendor/jquery/jquery-2.1.4.min.js"></script>
 
      {{ Html::script('js/vendor/bootstrap/bootstrap.min.js') }}
 
