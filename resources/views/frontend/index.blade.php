@@ -31,8 +31,8 @@
 
 @section('after-scripts-end')
 
-    <script src="http://protocols.local/js/backend/plugin/datatables/jquery.dataTables.min.js"></script>
-    <script src="http://protocols.local/js/backend/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    {{ Html::script('/js/backend/plugin/datatables/jquery.dataTables.min.js') }}
+    {{ Html::script('js/backend/plugin/datatables/dataTables.bootstrap.min.js') }}
 
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.bootstrap.min.js"></script>
