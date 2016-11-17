@@ -4,6 +4,7 @@
 Homestead.yaml
 Homestead.json
 .env
+/protocols
 
 /public/css/frontend.css
 /public/css/frontend.css.map
@@ -13,6 +14,7 @@ Homestead.json
 /public/js/frontend.js.map
 /public/js/backend.js
 /public/js/backend.js.map
+
 
 .DS_Store
 Thumbs.db
